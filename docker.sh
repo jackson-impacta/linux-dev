@@ -38,5 +38,11 @@ echo "${FGBLUE}Adcionando usuario no grupo grupo docker...${NORMAL}"
 sudo usermod -aG docker $USERNAME || $USER 2>/tmp/erro
 ACAO=$?
 [ $ACAO -ne 0 ] && _erro $ACAO
+echo "${FGBLUE}Instalando docker-compose...${NORMAL}"
+sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose || $USER 2>/tmp/erro
+[ $ACAO -ne 0 ] && _erro $ACAO
+echo "${FGBLUE}Docker Compose instalado${NORMAL}"
+docker-compose --version
 echo "${FGGREEN}INSTALAÇÃO CONCLUIDA!${NORMAL}"
 echo "${FGCYAN}Por Favor reinicie o seu computador e depois execute o comando ${FGGREEN}docker info${FGCYAN} no seu terminal${NORMAL}"
